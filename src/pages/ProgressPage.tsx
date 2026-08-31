@@ -183,7 +183,7 @@ export const ProgressPage: React.FC = () => {
       <div className="p-3.5 rounded-xl bg-slate-900/50 border border-slate-800 text-[11px] text-slate-400 flex items-start gap-2.5">
         <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
         <p className="leading-relaxed">
-          <strong className="text-slate-300">Data Transparency:</strong> These figures represent deterministic demo trend benchmarks demonstrating the StratIQ feedback loop. No guaranteed skill improvement is claimed.
+          <strong className="text-slate-300">Data Transparency:</strong> These figures represent deterministic demo trend benchmarks demonstrating the StartIQ feedback loop. No guaranteed skill improvement is claimed.
         </p>
       </div>
     </div>

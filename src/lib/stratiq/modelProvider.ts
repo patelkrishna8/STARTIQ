@@ -17,7 +17,7 @@ export interface ModelProvider {
  * Used for transparent, reliable hackathon evaluation without external API dependencies.
  */
 export const demoProvider: ModelProvider = {
-  name: 'StratIQ Demo Engine (Deterministic Evaluator)',
+  name: 'StartIQ Demo Engine (Deterministic Evaluator)',
   mode: 'demo',
   isConfigured: true,
   analyzeDecision: async (momentId: string) => {
@@ -56,7 +56,7 @@ export const demoProvider: ModelProvider = {
  * Calls backend or serverless AI endpoint when configured.
  */
 export const aiProvider: ModelProvider = {
-  name: 'StratIQ Vision-LLM Pipeline (Model Mode)',
+  name: 'StartIQ Vision-LLM Pipeline (Model Mode)',
   mode: 'model',
   isConfigured: typeof process !== 'undefined' && !!process.env?.VITE_AI_API_KEY,
   analyzeDecision: async (momentId: string) => {

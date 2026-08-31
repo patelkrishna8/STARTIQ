@@ -250,7 +250,7 @@ export const KeyMomentPage: React.FC = () => {
           <div className="p-2.5 rounded-lg bg-black/40 border border-white/5 text-[11px] text-slate-400 flex items-start gap-2">
             <Info className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
             <p className="leading-tight">
-              StratIQ provides counterfactual reasoning based on positional geometry, not guaranteed outcome predictions.
+              StartIQ provides counterfactual reasoning based on positional geometry, not guaranteed outcome predictions.
             </p>
           </div>
         </div>

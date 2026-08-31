@@ -40,7 +40,7 @@ export const AboutPage: React.FC = () => {
           Designed for a Phone-First Gaming Workflow
         </h1>
         <p className="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed">
-          StratIQ brings professional post-match tactical analysis directly to competitive mobile gamers on high-performance devices.
+          StartIQ brings professional post-match tactical analysis directly to competitive mobile gamers on high-performance devices.
         </p>
       </div>
 
@@ -87,7 +87,7 @@ export const AboutPage: React.FC = () => {
               <span>Local Preprocessing & Frame Sampling</span>
             </span>
             <p className="text-slate-400 leading-relaxed text-[11px]">
-              High-refresh iQOO gaming devices can capture gameplay at 60–120 FPS. StratIQ down-samples to critical engagement windows locally before transmission, reducing bandwidth and latency.
+              High-refresh iQOO gaming devices can capture gameplay at 60–120 FPS. StartIQ down-samples to critical engagement windows locally before transmission, reducing bandwidth and latency.
             </p>
           </div>
 

@@ -461,7 +461,7 @@ export const InputMethodPage: React.FC = () => {
                     <div className="text-xs text-slate-400 bg-slate-900/60 p-3 rounded-xl border border-slate-800 space-y-1">
                       <p className="text-slate-300 font-semibold">Post-Session Analysis Notice</p>
                       <p className="text-[11px] leading-relaxed">
-                        StratIQ processes gameplay after the session concludes. Real-time in-game overlay coaching is not supported.
+                        StartIQ processes gameplay after the session concludes. Real-time in-game overlay coaching is not supported.
                       </p>
                     </div>
                     <button
