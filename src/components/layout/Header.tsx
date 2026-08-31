@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-                StratIQ
+                StartIQ
               </span>
               <span className="hidden sm:inline-flex text-[10px] font-mono uppercase bg-slate-800/80 text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20">
                 AI Gaming Coach

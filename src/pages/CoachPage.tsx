@@ -270,7 +270,7 @@ export const CoachPage: React.FC = () => {
           <div className="p-3.5 rounded-xl bg-slate-900/50 border border-slate-800 text-[11px] text-slate-400 flex items-start gap-2.5">
             <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong className="text-slate-300">Safety & Anti-Cheat Compliance:</strong> StratIQ recommendations are completely non-invasive. The application never modifies Free Fire game files, memory, or device settings automatically. Settings are applied manually by the player.
+              <strong className="text-slate-300">Safety & Anti-Cheat Compliance:</strong> StartIQ recommendations are completely non-invasive. The application never modifies Free Fire game files, memory, or device settings automatically. Settings are applied manually by the player.
             </p>
           </div>
         </div>
@@ -282,7 +282,7 @@ export const CoachPage: React.FC = () => {
           <div className="bg-[#11141e] border border-slate-800 rounded-2xl p-5 space-y-2">
             <h2 className="text-base font-bold text-white">Cross-Match Mistake Memory</h2>
             <p className="text-xs text-slate-400 leading-relaxed">
-              StratIQ continuously indexes your match archives to track recurring tactical errors and verify whether you are correcting them across sessions.
+              StartIQ continuously indexes your match archives to track recurring tactical errors and verify whether you are correcting them across sessions.
             </p>
           </div>
 

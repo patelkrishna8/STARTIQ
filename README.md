@@ -1,4 +1,4 @@
-# StratIQ — AI Gaming Coach
+# StartIQ — AI Gaming Coach
 
 > **"Turn Every Match Into a Lesson."**  
 > *AI-Assisted Post-Match Gameplay Decision Analysis for Competitive Gamers.*
@@ -9,7 +9,7 @@
 
 Competitive mobile gamers spend hundreds of hours grinding matches but struggle to isolate exactly why they lost key gunfights. Existing tools are either **generic statistics dashboards** (K/D ratios, damage totals) or **overly theoretical**.
 
-**StratIQ** transforms post-match analysis into an actionable, personalized coaching experience:
+**StartIQ** transforms post-match analysis into an actionable, personalized coaching experience:
 - Ingests gameplay footage via **Upload Gameplay** (MP4/WebM <=100MB) or **Capture Session** (`getDisplayMedia` + `MediaRecorder`).
 - **Verifies the game signature** (currently Free Fire) with deterministic mismatch detection.
 - Pinpoints critical decision-making moments (combat timing, cover utilization, zone rotations).
@@ -51,7 +51,7 @@ Progress Tracking (Before vs After Performance Matrices)
 
 ## 3. Product Architecture
 
-StratIQ is organized with a clean, modular service layer in `src/lib/stratiq/`:
+StartIQ is organized with a clean, modular service layer in `src/lib/stratiq/`:
 
 ```
 src/lib/stratiq/
@@ -113,7 +113,7 @@ src/lib/stratiq/
 
 ## 5. Safety, Anti-Cheat & Fair Play Compliance
 
-StratIQ is strictly an **analysis, recommendation, and coaching system**:
+StartIQ is strictly an **analysis, recommendation, and coaching system**:
 - ❌ Does NOT modify Free Fire game files.
 - ❌ Does NOT inject code into the Free Fire process.
 - ❌ Does NOT automate gameplay or screen tapping.

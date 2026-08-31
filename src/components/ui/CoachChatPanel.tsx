@@ -56,7 +56,7 @@ export const CoachChatPanel: React.FC = () => {
           </div>
           <div>
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <span>StratIQ AI Coach</span>
+              <span>StartIQ AI Coach</span>
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             </h3>
             <p className="text-[11px] font-mono text-cyan-400">Grounded to your 5 analyzed matches</p>

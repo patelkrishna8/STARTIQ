@@ -50,7 +50,7 @@ export const DemoBadge: React.FC<DemoBadgeProps> = ({ variant = 'pill', classNam
 
             <div className="space-y-3 text-sm text-slate-300">
               <p>
-                <strong className="text-white">StratIQ Demo Mode</strong> utilizes sample analysis heuristics and pre-validated tactical models when a live AI/vision model endpoint is not connected.
+                <strong className="text-white">StartIQ Demo Mode</strong> utilizes sample analysis heuristics and pre-validated tactical models when a live AI/vision model endpoint is not connected.
               </p>
               <div className="bg-slate-900/80 p-3 rounded-xl border border-slate-800 font-mono text-xs text-slate-400 space-y-1.5">
                 <div className="flex items-center justify-between">
