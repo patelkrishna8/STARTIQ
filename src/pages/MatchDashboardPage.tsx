@@ -15,6 +15,7 @@ import {
   Footprints,
   Brain,
   Sparkles,
+  Sliders,
 } from 'lucide-react';
 import { getMatchById, getMatchHistory } from '../lib/stratiq/playerHistory';
 import { RadarOrBarChart } from '../components/ui/RadarOrBarChart';
@@ -70,7 +71,7 @@ export const MatchDashboardPage: React.FC = () => {
           className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-300 font-mono transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Match History</span>
+          <span>Match Archives</span>
         </Link>
 
         <div className="flex items-center gap-2">
@@ -90,6 +91,9 @@ export const MatchDashboardPage: React.FC = () => {
                 <Flame className="w-3.5 h-3.5 text-amber-400" />
                 Free Fire Match Analysis
               </span>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                Placement: #{match.placement || 2}
+              </span>
             </div>
             <h1 className="text-xl sm:text-2xl font-extrabold text-white">{match.title}</h1>
             <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400 pt-1">
@@ -102,6 +106,8 @@ export const MatchDashboardPage: React.FC = () => {
                 <Clock className="w-3.5 h-3.5 text-slate-500" />
                 {match.duration}
               </span>
+              <span>•</span>
+              <span>Kills: <strong className="text-white">{match.kills || 5}</strong></span>
               {match.isDemoData && (
                 <>
                   <span>•</span>
@@ -115,7 +121,7 @@ export const MatchDashboardPage: React.FC = () => {
           <div className="flex items-center gap-3 self-start md:self-auto bg-slate-900/90 border border-slate-800 px-4 py-3 rounded-2xl">
             <div className="text-right">
               <span className="text-[10px] font-mono uppercase text-slate-400 block">Overall Score</span>
-              <span className="text-xs font-semibold text-cyan-400 font-mono">Benchmark</span>
+              <span className="text-xs font-semibold text-cyan-400 font-mono">Performance Benchmark</span>
             </div>
             <div className="text-3xl font-extrabold font-mono text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-3 py-1 rounded-xl">
               {match.overallScore}
@@ -148,10 +154,10 @@ export const MatchDashboardPage: React.FC = () => {
           </div>
 
           <Link
-            to="/progress"
+            to="/coach"
             className="text-xs font-mono text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 transition-colors"
           >
-            <span>Track Improvement</span>
+            <span>Open AI Coach Hub</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -208,7 +214,7 @@ export const MatchDashboardPage: React.FC = () => {
 
                 <div className="flex items-center gap-1.5">
                   <span className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border ${getImportanceBadge(moment.importance)}`}>
-                    {moment.importance} Importance
+                    {moment.importance} Severity
                   </span>
                 </div>
               </div>
@@ -229,6 +235,9 @@ export const MatchDashboardPage: React.FC = () => {
                   <span className={`text-[11px] font-mono font-medium px-2 py-0.5 rounded border capitalize ${getOutcomeBadge(moment.outcome)}`}>
                     Outcome: {moment.outcome}
                   </span>
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900 text-cyan-300 border border-slate-800">
+                    Decision: {moment.decisionScore || 42}/100
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300">
@@ -245,8 +254,8 @@ export const MatchDashboardPage: React.FC = () => {
       <div className="bg-[#11141e] border border-slate-800 rounded-2xl p-5 space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400">Recurring Mistakes Detected</h2>
-          <Link to="/progress" className="text-xs font-mono text-cyan-400 hover:underline">
-            View Trend History
+          <Link to="/coach" className="text-xs font-mono text-cyan-400 hover:underline">
+            View AI Coach Memory
           </Link>
         </div>
 
