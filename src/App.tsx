@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { HomePage } from './pages/HomePage';
+import { CoachPage } from './pages/CoachPage';
 import { SelectGamePage } from './pages/SelectGamePage';
 import { InputMethodPage } from './pages/InputMethodPage';
 import { VerificationPage } from './pages/VerificationPage';
@@ -19,6 +20,7 @@ export function App() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/coach" element={<CoachPage />} />
           <Route path="/analyze" element={<SelectGamePage />} />
           <Route path="/analyze/input" element={<InputMethodPage />} />
           <Route path="/analyze/verify" element={<VerificationPage />} />

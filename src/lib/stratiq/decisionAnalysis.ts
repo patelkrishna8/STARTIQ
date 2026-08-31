@@ -3,18 +3,24 @@ import { DecisionAnalysis } from './types';
 /**
  * Decision Analysis Engine
  * 
- * Provides nuanced, contextual explanations for why decisions mattered,
- * adhering strictly to non-exaggerated probabilistic language.
+ * Provides structured 4-part explanations:
+ * 1. What happened?
+ * 2. What did the player decide?
+ * 3. Why was it risky/bad?
+ * 4. What was the consequence?
+ * Plus an explicit 0-100 Decision Score.
  */
 export function getDecisionAnalyses(): Record<string, DecisionAnalysis> {
   return {
     'moment-1': {
       momentId: 'moment-1',
       situationExplanation: 'Enemy encountered near an open meadow without pre-existing obstacle coverage.',
-      playerDecisionExplanation: 'Player initiated full automatic fire from an exposed position rather than seeking nearby perimeter cover or placing a defensive Gloo Wall.',
+      playerDecisionExplanation: 'Player initiated full automatic fire from an exposed position rather than seeking nearby stone fence or placing a defensive Gloo Wall.',
       outcomeExplanation: 'Opponent was able to return fire with clear line of sight, eliminating the player in approximately 1.4 seconds.',
       whyItMattered: 'Based on the visible gameplay context, entering combat from an exposed angle allowed the opponent an unobstructed line of fire. In competitive Free Fire, initiating fights without immediate cover drastically lowers survivability.',
       confidenceNote: 'Analysis derived from geometric line of sight and position relative to cover.',
+      decisionScore: 42,
+      riskAssessment: 'Extreme Vulnerability',
     },
     'moment-2': {
       momentId: 'moment-2',
@@ -23,6 +29,8 @@ export function getDecisionAnalyses(): Record<string, DecisionAnalysis> {
       outcomeExplanation: 'Player survived with critically low HP (18 HP remaining) due to enemy missing a single pellet spread.',
       whyItMattered: 'Although the player survived this exchange, pushing high ground through a linear chokepoint heavily favors the defender. The success appears to rely on the opponent misfiring rather than positional superiority.',
       confidenceNote: 'Contextual risk assessment based on vertical angle disadvantage.',
+      decisionScore: 58,
+      riskAssessment: 'High Risk',
     },
     'moment-3': {
       momentId: 'moment-3',
@@ -31,6 +39,8 @@ export function getDecisionAnalyses(): Record<string, DecisionAnalysis> {
       outcomeExplanation: 'Successfully broke enemy tracking and safely crossed the zone threshold.',
       whyItMattered: 'This decision preserved HP pool and positioning for the endgame circle rather than taking a low-percentage fight against zone timer.',
       confidenceNote: 'Positive decision model validation.',
+      decisionScore: 86,
+      riskAssessment: 'Low Risk',
     },
     'moment-4': {
       momentId: 'moment-4',
@@ -39,6 +49,8 @@ export function getDecisionAnalyses(): Record<string, DecisionAnalysis> {
       outcomeExplanation: 'Third-partied from north ridge and eliminated while standing static at the crate.',
       whyItMattered: 'Looting contested airdrops without perimeter reconnaissance creates severe vulnerability to third-party ambushes.',
       confidenceNote: 'Situational awareness & tactical timing evaluation.',
+      decisionScore: 45,
+      riskAssessment: 'High Risk',
     },
   };
 }

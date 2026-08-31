@@ -1,200 +1,254 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Target, Play, TrendingUp, Flame, Shield, Sparkles, ArrowRight, CheckCircle, Clock, ChevronRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Target,
+  Play,
+  TrendingUp,
+  Flame,
+  Shield,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  Clock,
+  ChevronRight,
+  Crosshair,
+  Footprints,
+  Brain,
+  Award,
+  Zap,
+  Activity,
+  Sliders,
+  AlertTriangle,
+  HeartPulse,
+  Timer,
+  User,
+} from 'lucide-react';
+import { getMatchHistory, getPlayerProfile } from '../lib/stratiq/playerHistory';
 import { DemoBadge } from '../components/ui/DemoBadge';
 
 export const HomePage: React.FC = () => {
-  const games = [
-    {
-      id: 'free-fire',
-      name: 'Free Fire',
-      genre: 'Battle Royale',
-      status: 'supported',
-      desc: 'Full post-match decision analysis, counterfactual What-Ifs, and positioning metrics.',
-    },
-    {
-      id: 'bgmi',
-      name: 'BGMI',
-      genre: 'Battle Royale',
-      status: 'coming-soon',
-      desc: 'Krafton HUD classifier & zone rotation modeling.',
-    },
-    {
-      id: 'valorant',
-      name: 'Valorant',
-      genre: 'Tactical FPS',
-      status: 'coming-soon',
-      desc: 'First-person crosshair & utility trade analysis.',
-    },
-    {
-      id: 'cod',
-      name: 'Call of Duty',
-      genre: 'Action FPS',
-      status: 'coming-soon',
-      desc: 'CQB slide-cancel & gunfight pacing evaluation.',
-    },
-  ];
+  const navigate = useNavigate();
+  const matches = getMatchHistory();
+  const profile = getPlayerProfile();
+  const latestMatch = matches[0];
 
-  const steps = [
-    { label: 'Gameplay', sub: 'Upload or Capture' },
-    { label: 'Analyze', sub: 'Event Extraction' },
-    { label: 'Understand', sub: 'Decision Reasoning' },
-    { label: 'Recommend', sub: '"What If?" Actions' },
-    { label: 'Track', sub: 'Recurring Patterns' },
-    { label: 'Improve', sub: 'Targeted Goals' },
+  const metrics = [
+    { label: 'Overall Skill', score: profile.overallAverageScore, icon: Target, color: 'text-cyan-400', bg: 'bg-cyan-500' },
+    { label: 'Survival Time', score: 82, icon: HeartPulse, color: 'text-emerald-400', bg: 'bg-emerald-500' },
+    { label: 'Movement & Rotations', score: 78, icon: Footprints, color: 'text-blue-400', bg: 'bg-blue-500' },
+    { label: 'Aim & Drag Headshot', score: 76, icon: Crosshair, color: 'text-purple-400', bg: 'bg-purple-500' },
+    { label: 'Reaction & Response', score: 75, icon: Timer, color: 'text-teal-400', bg: 'bg-teal-500' },
+    { label: 'Decision Making', score: 72, icon: Brain, color: 'text-indigo-400', bg: 'bg-indigo-500' },
+    { label: 'Combat Trades', score: 68, icon: Flame, color: 'text-rose-400', bg: 'bg-rose-500' },
+    { label: 'Positioning & Cover', score: 61, icon: Shield, color: 'text-amber-400', bg: 'bg-amber-500' },
   ];
 
   return (
-    <div className="space-y-8 animate-fadeIn">
-      {/* Hero Section */}
-      <div className="text-center space-y-4 pt-2">
-        <div className="inline-flex items-center gap-2 bg-slate-900/80 border border-slate-800 px-3.5 py-1.5 rounded-full text-xs text-slate-300 font-mono">
-          <Target className="w-4 h-4 text-cyan-400" />
-          <span>STRATIQ // AI GAMING COACH</span>
-        </div>
+    <div className="space-y-7 animate-fadeIn">
+      {/* Top Banner: Player Overview */}
+      <div className="bg-gradient-to-br from-[#121929] via-[#101420] to-[#090b12] border border-cyan-500/30 rounded-3xl p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-          Turn Every Match <br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            Into a Lesson.
-          </span>
-        </h1>
-
-        <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-          Analyze gameplay footage to identify key decision-making moments, explain tactical mistakes, suggest counterfactual alternatives, and track recurring patterns across matches.
-        </p>
-
-        {/* Primary Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-          <Link
-            to="/analyze"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold text-sm shadow-lg shadow-cyan-500/20 active:scale-98 transition-all"
-          >
-            <Play className="w-4 h-4 fill-current" />
-            <span>Analyze Gameplay</span>
-          </Link>
-          <Link
-            to="/progress"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/70 text-slate-200 font-semibold text-sm transition-all"
-          >
-            <TrendingUp className="w-4 h-4 text-cyan-400" />
-            <span>View Progress</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* Demo Mode Notice Box */}
-      <div className="bg-[#11141e]/95 border border-cyan-500/20 rounded-2xl p-4 sm:p-5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl pointer-events-none" />
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <DemoBadge />
-              <span className="text-xs font-semibold text-white">Deterministic Evaluation</span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 relative z-10">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-xl shadow-cyan-500/20 shrink-0">
+              <div className="w-full h-full bg-[#0d0f17] rounded-[14px] flex items-center justify-center text-cyan-400 font-extrabold text-2xl">
+                VF
+              </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed max-w-xl">
-              Demo Mode uses sample analysis data and deterministic heuristic verification when a real AI/vision model is not connected.
-            </p>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-white">{profile.playerName}</h1>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                  iQOO 15 Gamer
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 font-mono">
+                Primary Title: <strong className="text-amber-400">Free Fire</strong> • Analyzed: {profile.matchesAnalyzed} Matches
+              </p>
+            </div>
           </div>
-          <Link
-            to="/about"
-            className="inline-flex items-center gap-1 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors whitespace-nowrap self-start sm:self-auto"
-          >
-            <span>Architecture & Roadmap</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </div>
 
-      {/* Core Flow Pipeline Banner */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400">Analysis Methodology</h2>
-          <span className="text-[11px] font-mono text-cyan-400">Post-Match Loop</span>
-        </div>
-
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-          {steps.map((step, idx) => (
-            <div
-              key={step.label}
-              className="bg-slate-900/60 border border-slate-800/70 rounded-xl p-2.5 text-center flex flex-col justify-center"
-            >
-              <div className="text-[10px] font-mono text-cyan-400/80 mb-0.5">0{idx + 1}</div>
-              <div className="text-xs font-bold text-slate-200">{step.label}</div>
-              <div className="text-[10px] text-slate-500 truncate">{step.sub}</div>
+          {/* Quick Stat Badges */}
+          <div className="grid grid-cols-3 gap-2 font-mono text-center">
+            <div className="bg-slate-900/80 border border-slate-800/80 p-2.5 rounded-xl">
+              <span className="text-[10px] text-slate-400 block">Performance</span>
+              <span className="text-lg font-bold text-cyan-300">{profile.overallAverageScore}</span>
             </div>
-          ))}
+            <div className="bg-slate-900/80 border border-slate-800/80 p-2.5 rounded-xl">
+              <span className="text-[10px] text-slate-400 block">Improvement</span>
+              <span className="text-lg font-bold text-emerald-400">+{profile.improvementPercentage}%</span>
+            </div>
+            <div className="bg-slate-900/80 border border-slate-800/80 p-2.5 rounded-xl">
+              <span className="text-[10px] text-slate-400 block">Streak</span>
+              <span className="text-lg font-bold text-amber-400">{profile.improvementStreak}W</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Most Common Mistake & Goal Strip */}
+        <div className="mt-5 pt-4 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div className="flex items-center gap-2 text-slate-300 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+            <span className="truncate">
+              <strong className="text-slate-400">Common Flaw:</strong> {profile.mostCommonMistake}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 text-slate-300 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+            <Target className="w-4 h-4 text-cyan-400 shrink-0" />
+            <span className="truncate">
+              <strong className="text-slate-400">Next Focus:</strong> Prioritize cover before shooting
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Supported Games Grid */}
+      {/* Primary Action Buttons */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Link
+          to="/analyze"
+          className="p-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-sm flex items-center justify-between shadow-lg shadow-cyan-500/20 active:scale-98 transition-all"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center">
+              <Play className="w-5 h-5 fill-current" />
+            </div>
+            <div className="text-left">
+              <span className="block font-bold">Analyze Gameplay</span>
+              <span className="text-[11px] font-normal opacity-80">Upload or Capture Session</span>
+            </div>
+          </div>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+
+        <Link
+          to="/coach"
+          className="p-4 rounded-2xl bg-[#11141e] hover:bg-[#151928] border border-cyan-500/40 text-white font-bold text-sm flex items-center justify-between shadow-sm active:scale-98 transition-all"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+              <Brain className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <span className="block font-bold">AI Coach & Settings</span>
+              <span className="text-[11px] font-normal text-slate-400">iQOO 15 DPI & Controls</span>
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-cyan-400" />
+        </Link>
+
+        <Link
+          to="/progress"
+          className="p-4 rounded-2xl bg-[#11141e] hover:bg-[#151928] border border-slate-800 text-white font-bold text-sm flex items-center justify-between shadow-sm active:scale-98 transition-all"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-slate-900 text-emerald-400 flex items-center justify-center border border-slate-800">
+              <TrendingUp className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <span className="block font-bold">Track Progress</span>
+              <span className="text-[11px] font-normal text-slate-400">Mistake Reduction Curves</span>
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-slate-400" />
+        </Link>
+      </div>
+
+      {/* 8 Performance Metrics Cards Matrix */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400">Supported Games</h2>
-          <span className="text-[11px] font-mono text-emerald-400">Free Fire First</span>
+          <div className="flex items-center gap-2">
+            <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400">Performance Metrics</h2>
+            <DemoBadge />
+          </div>
+          <span className="text-[11px] font-mono text-cyan-400">Tactical Vector Radar</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {games.map((g) => {
-            const isSupported = g.status === 'supported';
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {metrics.map((m) => {
+            const Icon = m.icon;
             return (
               <div
-                key={g.id}
-                className={`p-4 rounded-2xl border transition-all ${
-                  isSupported
-                    ? 'bg-gradient-to-b from-[#141824] to-[#0e111a] border-cyan-500/40 shadow-lg shadow-cyan-500/5'
-                    : 'bg-[#0d0f17]/60 border-slate-800/50 opacity-70'
-                }`}
+                key={m.label}
+                className="bg-[#11141e]/90 border border-slate-800/80 rounded-2xl p-3.5 space-y-2 hover:border-slate-700 transition-all"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex items-center gap-2.5">
-                    <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                        isSupported
-                          ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40'
-                          : 'bg-slate-800 text-slate-500'
-                      }`}
-                    >
-                      <Flame className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-white">{g.name}</h3>
-                      <span className="text-[11px] text-slate-400">{g.genre}</span>
-                    </div>
+                <div className="flex items-center justify-between">
+                  <div className={`p-2 rounded-xl bg-slate-900 ${m.color}`}>
+                    <Icon className="w-4 h-4" />
                   </div>
-
-                  <span
-                    className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full border ${
-                      isSupported
-                        ? 'bg-emerald-950/60 text-emerald-300 border-emerald-500/40'
-                        : 'bg-slate-800/80 text-slate-400 border-slate-700/50'
-                    }`}
-                  >
-                    {isSupported ? 'Supported' : 'Coming Soon'}
-                  </span>
+                  <span className="text-sm font-mono font-extrabold text-white">{m.score}</span>
                 </div>
-
-                <p className="text-xs text-slate-400 leading-relaxed mb-3">{g.desc}</p>
-
-                {isSupported ? (
-                  <Link
-                    to="/analyze"
-                    className="w-full py-2 px-3 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all"
-                  >
-                    <span>Start Analysis</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                ) : (
-                  <button
-                    disabled
-                    className="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-600 text-xs font-mono cursor-not-allowed text-center"
-                  >
-                    Planned in Multi-Game Phase
-                  </button>
-                )}
+                <div className="space-y-1">
+                  <span className="text-xs font-semibold text-slate-300 block truncate">{m.label}</span>
+                  <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                    <div className={`${m.bg} h-full rounded-full`} style={{ width: `${m.score}%` }} />
+                  </div>
+                </div>
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* Recent Matches Feed */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between px-1">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400">Recent Analyzed Matches</h2>
+          <Link to="/matches" className="text-xs font-mono text-cyan-400 hover:underline">
+            View All ({matches.length})
+          </Link>
+        </div>
+
+        <div className="space-y-3">
+          {matches.slice(0, 3).map((m) => (
+            <div
+              key={m.id}
+              onClick={() => navigate(`/matches/${m.id}`)}
+              className="bg-[#11141e]/90 hover:bg-[#151928] border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-4 sm:p-5 transition-all cursor-pointer shadow-sm active:scale-[0.99] space-y-3"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold bg-slate-900 px-2 py-0.5 rounded text-cyan-400 border border-slate-800">
+                      Match #{m.matchNumber < 10 ? '0' + m.matchNumber : m.matchNumber}
+                    </span>
+                    <span className="text-xs font-semibold text-slate-300 flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5 text-amber-400" />
+                      {m.gameName}
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/30">
+                      Placement: #{m.placement}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-white">{m.title}</h3>
+                </div>
+
+                <div className="text-right shrink-0">
+                  <span className="text-base font-mono font-extrabold text-cyan-300 bg-cyan-950/70 border border-cyan-500/40 px-2.5 py-1 rounded-xl block">
+                    {m.overallScore}
+                    <span className="text-[10px] font-normal text-slate-400">/100</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Match Stats Strip */}
+              <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                <div className="flex items-center gap-3 text-slate-400 text-[11px]">
+                  <span>Kills: <strong className="text-white">{m.kills}</strong></span>
+                  <span>•</span>
+                  <span>Mistakes: <strong className="text-rose-400">{m.recurringMistakes.length + 1}x</strong></span>
+                  <span>•</span>
+                  <span>Key Moments: <strong className="text-cyan-300">{m.keyMoments.length}</strong></span>
+                </div>
+
+                <div className="flex items-center gap-1 text-cyan-400 font-sans font-semibold text-xs">
+                  <span>View Breakdown</span>
+                  <ChevronRight className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -12,8 +12,12 @@ import {
   Award,
   Sparkles,
   Layers,
+  Smartphone,
+  Sliders,
+  TrendingUp,
 } from 'lucide-react';
 import { getPlayerProfile, resetToDemoState } from '../lib/stratiq/playerHistory';
+import { DEFAULT_IQOO_DEVICE, SENSITIVITY_PROFILES } from '../lib/stratiq/settingsEngine';
 import { DemoBadge } from '../components/ui/DemoBadge';
 
 export const ProfilePage: React.FC = () => {
@@ -32,12 +36,12 @@ export const ProfilePage: React.FC = () => {
       {/* Header */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">Player Insights</span>
+          <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">Player Profile</span>
           <DemoBadge />
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white">Personalized Decision Profile</h1>
         <p className="text-xs sm:text-sm text-slate-400">
-          Synthesized decision strengths, recurring blind spots, and current training priorities.
+          Synthesized player credentials, hardware configuration, and tactical growth history.
         </p>
       </div>
 
@@ -58,13 +62,13 @@ export const ProfilePage: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-mono mt-0.5">
-                Primary Game: <strong className="text-amber-400">Free Fire</strong> • Analyzed Matches: {profile.matchesAnalyzed}
+                Target Game: <strong className="text-amber-400">Free Fire</strong> • Analyzed Matches: {profile.matchesAnalyzed}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-xs bg-slate-900/90 border border-slate-800 px-3.5 py-2 rounded-xl self-start sm:self-auto">
-            <span className="text-slate-400">Career Average:</span>
+            <span className="text-slate-400">Performance:</span>
             <span className="text-cyan-300 font-bold text-sm">{profile.overallAverageScore} / 100</span>
           </div>
         </div>
@@ -84,7 +88,7 @@ export const ProfilePage: React.FC = () => {
             </div>
             <h3 className="text-sm font-bold text-white">{profile.strongestArea.name}</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Effective line-of-sight breaking and zone contour traversal during mid-to-late circle transitions.
+              Effective line-of-sight breaking, zigzag evasions, and zone contour traversal.
             </p>
           </div>
 
@@ -108,18 +112,46 @@ export const ProfilePage: React.FC = () => {
 
         {/* Current Focus Banner */}
         <div className="bg-slate-950/70 p-4 rounded-xl border border-cyan-500/20 space-y-1">
-          <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">Current Focus Target</span>
+          <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">Active Training Focus</span>
           <p className="text-xs sm:text-sm text-slate-200 font-medium">"{profile.currentFocus}"</p>
         </div>
       </div>
 
-      {/* Demo State & Data Management */}
+      {/* Hardware & Settings Summary Card */}
       <div className="bg-[#11141e] border border-slate-800 rounded-2xl p-5 space-y-4">
         <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-bold text-white">Guest Session & Privacy Management</h3>
-            <p className="text-xs text-slate-400">Manage locally cached match history and feedback telemetry</p>
+          <div className="flex items-center gap-2.5">
+            <Smartphone className="w-5 h-5 text-cyan-400" />
+            <h3 className="text-sm font-bold text-white">Hardware & Sensitivity Calibration</h3>
           </div>
+          <span className="text-[11px] font-mono text-slate-400">iQOO Esports Profile</span>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
+          <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+            <span className="text-slate-500 text-[10px] block">Device:</span>
+            <span className="text-white font-bold">{DEFAULT_IQOO_DEVICE.deviceModel}</span>
+          </div>
+          <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+            <span className="text-slate-500 text-[10px] block">Recommended DPI:</span>
+            <span className="text-cyan-300 font-bold">{DEFAULT_IQOO_DEVICE.recommendedDPI} DPI</span>
+          </div>
+          <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+            <span className="text-slate-500 text-[10px] block">Optimization Style:</span>
+            <span className="text-emerald-300 font-bold">{profile.preferredPlayStyle}</span>
+          </div>
+          <div className="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+            <span className="text-slate-500 text-[10px] block">General Sensitivity:</span>
+            <span className="text-purple-300 font-bold">{SENSITIVITY_PROFILES[profile.preferredPlayStyle].general}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Guest Session & Data Management */}
+      <div className="bg-[#11141e] border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div>
+          <h3 className="text-sm font-bold text-white">Guest Session & Privacy Management</h3>
+          <p className="text-xs text-slate-400">Manage locally stored match history and feedback telemetry</p>
         </div>
 
         {showResetSuccess && (

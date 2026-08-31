@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Target, Smartphone, ShieldCheck, Flame } from 'lucide-react';
+import { Target, Smartphone, ShieldCheck, Flame, Brain } from 'lucide-react';
 import { DemoBadge } from '../ui/DemoBadge';
 
 export const Header: React.FC = () => {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/', label: 'Home' },
+    { path: '/', label: 'Dashboard' },
+    { path: '/coach', label: 'AI Coach & Settings' },
     { path: '/analyze', label: 'Analyze' },
     { path: '/matches', label: 'Matches' },
     { path: '/progress', label: 'Progress' },
@@ -40,14 +41,16 @@ export const Header: React.FC = () => {
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1 rounded-xl border border-slate-800/60">
           {navLinks.map((link) => {
-            const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
+            const isActive =
+              location.pathname === link.path ||
+              (link.path !== '/' && location.pathname.startsWith(link.path));
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   isActive
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
+                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
                 }`}
               >
